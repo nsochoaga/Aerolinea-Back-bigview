@@ -126,8 +126,7 @@ Authorization: Bearer TOKEN_JWT
 Content-Type: application/json
 
 {
-  "vuelo": 1,
-  "cantidad_pasajeros": 2
+  "vueloId": 1
 }
 ```
 
