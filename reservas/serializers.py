@@ -20,7 +20,12 @@ class VueloSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ReservaSerializer(serializers.ModelSerializer):
+    vuelo = VueloSerializer(read_only=True)
+    vueloId = serializers.PrimaryKeyRelatedField(
+        queryset=Vuelo.objects.all(), write_only=True, source="vuelo"
+    )
+    usuario = serializers.PrimaryKeyRelatedField(read_only=True)
+
     class Meta:
         model = Reserva
-        fields = '__all__'
-        read_only_fields = ['usuario', 'fecha_reserva']
+        fields = ['id', 'fecha_reserva', 'usuario', 'vuelo', 'vueloId']
